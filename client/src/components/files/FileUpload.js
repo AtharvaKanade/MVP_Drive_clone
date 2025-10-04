@@ -13,8 +13,8 @@ function FileUpload({ onUpload }) {
 
     const file = acceptedFiles[0];
     
-    // Check file size (100MB limit)
-    const maxSize = 100 * 1024 * 1024;
+    // Check file size (configurable limit, default 100MB)
+    const maxSize = 100 * 1024 * 1024; // Can be made configurable via API
     if (file.size > maxSize) {
       setError('File size must be less than 100MB');
       return;

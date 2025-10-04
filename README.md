@@ -66,6 +66,7 @@ Before running this application, make sure you have:
    MONGODB_URI=mongodb://localhost:27017/drive-mvp
    JWT_SECRET=b775df12d09a6fee19a8d866966dce45bcdfae0bc0edef4e6cccbff75f389b4d
    NODE_ENV=development
+   MAX_FILE_SIZE=104857600
    ```
 
 4. **Start MongoDB**
@@ -150,7 +151,7 @@ MVP_Drive_clone/
 
 ## File Limits
 
-- Maximum file size: 100MB
+- Maximum file size: 100MB (configurable via MAX_FILE_SIZE environment variable)
 - Supported file types: All file types
 - Files are stored permanently until deleted by the user
 

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const AWS = require('aws-sdk');
+//const AWS = require('aws-sdk');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');

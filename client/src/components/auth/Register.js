@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Mail, Lock, User } from 'lucide-react';
+import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 
 function Register() {
   const { register } = useAuth();
@@ -13,6 +13,8 @@ function Register() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,6 +22,14 @@ function Register() {
       [e.target.name]: e.target.value
     });
     setError('');
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -139,28 +149,46 @@ function Register() {
               Password
             </label>
             <div style={{ position: 'relative' }}>
-              <Lock 
-                size={20} 
-                style={{ 
-                  position: 'absolute', 
-                  left: '0.75rem', 
-                  top: '50%', 
+              <Lock
+                size={20}
+                style={{
+                  position: 'absolute',
+                  left: '0.75rem',
+                  top: '50%',
                   transform: 'translateY(-50%)',
                   color: '#6b7280'
-                }} 
+                }}
               />
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 className="input"
-                style={{ paddingLeft: '3rem' }}
+                style={{ paddingLeft: '3rem', paddingRight: '3rem' }}
                 value={formData.password}
                 onChange={handleChange}
                 required
                 placeholder="Create a password"
                 minLength="6"
               />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6b7280',
+                  padding: '0.25rem'
+                }}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
             </div>
           </div>
 
@@ -169,28 +197,46 @@ function Register() {
               Confirm Password
             </label>
             <div style={{ position: 'relative' }}>
-              <Lock 
-                size={20} 
-                style={{ 
-                  position: 'absolute', 
-                  left: '0.75rem', 
-                  top: '50%', 
+              <Lock
+                size={20}
+                style={{
+                  position: 'absolute',
+                  left: '0.75rem',
+                  top: '50%',
                   transform: 'translateY(-50%)',
                   color: '#6b7280'
-                }} 
+                }}
               />
               <input
                 id="confirmPassword"
                 name="confirmPassword"
-                type="password"
+                type={showConfirmPassword ? 'text' : 'password'}
                 className="input"
-                style={{ paddingLeft: '3rem' }}
+                style={{ paddingLeft: '3rem', paddingRight: '3rem' }}
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
                 placeholder="Confirm your password"
                 minLength="6"
               />
+              <button
+                type="button"
+                onClick={toggleConfirmPasswordVisibility}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#6b7280',
+                  padding: '0.25rem'
+                }}
+                title={showConfirmPassword ? 'Hide password' : 'Show password'}
+              >
+                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
             </div>
           </div>
 
